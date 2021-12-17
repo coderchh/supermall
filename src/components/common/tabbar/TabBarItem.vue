@@ -43,7 +43,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 .tab-bar-item {
   flex: 1;
   text-align: center;
