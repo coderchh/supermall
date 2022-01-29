@@ -1,9 +1,9 @@
 <template>
-  <div class="goods-item">
-    <img :src="goodsItem.show.img" alt="" />
+  <div class="goods-item" @click="itemClick">
+    <img v-lazy="showImage" alt="" @load="imgLoad" />
     <div class="goods-info">
       <p>{{ goodsItem.title }}</p>
-      <span class="price">{{ goodsItem.price }}</span>
+      <span class="price">{{ goodsItem.price | filterPrice }}</span>
       <span class="collect">{{ goodsItem.cfav }}</span>
     </div>
   </div>
@@ -20,11 +20,27 @@ export default {
       },
     },
   },
+  computed: {
+    showImage() {
+      return (
+        this.goodsItem.img || this.goodsItem.image || this.goodsItem.show.img
+      );
+    },
+  },
+  methods: {
+    imgLoad() {
+      this.$bus.$emit("itemImgLoad");
+    },
+    itemClick() {
+      this.$router.push("/detail/" + this.goodsItem.iid);
+    },
+  },
 };
 </script>
 
 <style scoped>
 .goods-item {
+  margin-top: 10px;
   padding-bottom: 40px;
   position: relative;
   width: 48%;
@@ -32,8 +48,9 @@ export default {
 
 .goods-item img {
   width: 100%;
+  height: 100%;
   border-radius: 5px;
-  border: 2px solid var(--color-tint);
+  /* border: 2px solid var(--color-tint); */
 }
 
 .goods-info {

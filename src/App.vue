@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <!-- include是需要缓存的组件，exclude是除了某些组件都缓存 -->
+    <!-- :include="['a', 'b']"缓存多个组件 -->
+    <keep-alive :include="['Home', 'Category']">
+      <router-view></router-view>
+    </keep-alive>
     <main-tab-bar></main-tab-bar>
   </div>
 </template>

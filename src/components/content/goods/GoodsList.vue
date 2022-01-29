@@ -32,8 +32,8 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  background-color: var(--color-background);
-
+  /* background-color: var(--color-background); */
+  background: #f6f6f6;
   padding: 2px;
 }
 </style>
