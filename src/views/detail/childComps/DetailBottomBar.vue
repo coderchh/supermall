@@ -7,7 +7,7 @@
     </div>
     <div class="bar-cart">
       <span @click="addToCart">加入购物车</span>
-      <span>立即购买</span>
+      <span @click="buyNow">立即购买</span>
     </div>
   </div>
 </template>
@@ -18,6 +18,9 @@ export default {
   methods: {
     addToCart() {
       this.$emit("addCart");
+    },
+    buyNow() {
+      this.$toast("正在维护中");
     },
   },
 };
