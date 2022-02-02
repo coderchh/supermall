@@ -1,5 +1,8 @@
 <template>
-  <div class="detail-param-info" v-if="Object.keys(paramInfo).length !== 0">
+  <div
+    class="detail-param-info"
+    v-if="Object.keys(paramInfo).length !== 0 && paramInfo.sizes"
+  >
     <ul
       class="param-list"
       v-for="(size, index) in paramInfo.sizes"

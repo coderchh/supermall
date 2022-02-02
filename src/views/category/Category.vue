@@ -19,7 +19,12 @@
         >
         </tab-control>
       </div>
-      <scroll class="tab-content" :probe-type="3" @scroll="contentScroll">
+      <scroll
+        class="tab-content"
+        :probe-type="3"
+        @scroll="contentScroll"
+        ref="scroll"
+      >
         <tab-cate-list
           :showSubcategory="showSubcategory"
           @listImageLoad="listImageLoad"
@@ -39,7 +44,10 @@
 </template>
 
 <script>
+import Scroll from "components/common/scroll/Scroll.vue";
 import NavBar from "components/common/navbar/NavBar.vue";
+import TabControl from "components/content/tabControl/TabControl.vue";
+
 import TabMenu from "./childComps/TabMenu.vue";
 import TabCateList from "./childComps/TabCateList.vue";
 import TabCateContent from "./childComps/TabCateContent.vue";
@@ -49,8 +57,6 @@ import {
   getSubcategory,
   getCategoryDetail,
 } from "network/category";
-import Scroll from "components/common/scroll/Scroll.vue";
-import TabControl from "components/content/tabControl/TabControl.vue";
 
 export default {
   name: "Category",
@@ -127,6 +133,9 @@ export default {
     // 点击左边分类对应显示左边数据
     selectIndex(index) {
       this._getSubcategory(index);
+      this.currentType = "pop";
+      this.$refs.tabControl.currentIndex = 0;
+      this.$refs.tabControls.currentIndex = 0;
     },
     tabClick(index) {
       this.currentType = Object.keys(this.categoryData[0].categoryDetail)[
@@ -141,7 +150,7 @@ export default {
       //同步吸顶效果的tabControl下标选择
       this.$refs.tabControl.currentIndex = index;
       //切换分类时，返回商品推荐头部
-      // this.$refs.scroll.scrollTo(0, -this.$refs.tabControl.$el.offsetTop, 0);
+      this.$refs.scroll.scrollTo(0, -this.$refs.tabControl.$el.offsetTop, 0);
     },
     //是否开启吸顶效果
     contentScroll(position) {

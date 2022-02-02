@@ -1,5 +1,5 @@
 <template>
-  <scroll id="tab-menu" :probe-type="3">
+  <scroll id="tab-menu" :probe-type="3" ref="scroll">
     <div class="tab-menu">
       <div
         class="tab-item"

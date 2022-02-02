@@ -7,8 +7,9 @@ import router from './router'
 import store from './store'
 
 // 使用vantui的Toast
-import { Toast } from 'vant'
+import { Toast, Icon } from 'vant'
 Vue.use(Toast)
+Vue.use(Icon)
 
 //引入图片懒加载
 import VueLazyLoad from "vue-lazyload"
